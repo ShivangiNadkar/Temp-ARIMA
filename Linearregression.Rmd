@@ -1,0 +1,62 @@
+---
+title: "ACF graph"
+author: "Shivangi Nadkar"
+date: "2022-11-07"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(readr)
+library(ggplot2)
+library(plotly)
+library(ggpubr)
+```
+
+```{r}
+data<- read.csv("TemperatureData.csv")
+```
+
+```{r}
+plot <- data|> ggplot(aes(x = Year,
+                  y = Degrees.C)) +
+    geom_point() +
+    geom_smooth(method = "lm") +
+    xlim(1950, 2150) +
+    ylim(-2, 2.5)
+#plot(predict(lmyear,
+        #newdata = data,
+        #interval = 'confidence'))
+```
+
+```{r}
+reg<-lm(Degrees.C~Year,
+   data = data)
+summary(lmyear)
+
+predict(lmyear,
+        newdata = data,
+        interval = 'confidence')
+
+```
+
+```{r}
+require(stats)
+reg
+coeff = coefficients(reg)
+
+eq = paste0("y = ", round(coeff[2],3), "*x + ", round(coeff[1],3))
+
+tempchange<- plot + geom_abline(intercept = coeff[1],
+                   slope = coeff[2],
+                   color = "red",
+                   size = 1,
+                   alpha = 0.5) +
+  labs(title = "Change in Temperature predicted for 1950-2100")
+```
+
+```{r}
+tempchange
+```
+
