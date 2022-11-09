@@ -15,11 +15,11 @@ library(ggpubr)
 ```
 
 ```{r}
-data<- read.csv("TemperatureData.csv")
+temp2<- read.csv("TemperatureData.csv")
 ```
 
 ```{r}
-plot <- data|> ggplot(aes(x = Year,
+plot <- temp2|> ggplot(aes(x = Year,
                   y = Degrees.C)) +
     geom_point() +
     geom_smooth(method = "lm") +
@@ -32,7 +32,7 @@ plot <- data|> ggplot(aes(x = Year,
 
 ```{r}
 reg<-lm(Degrees.C~Year,
-   data = data)
+   data = temp2)
 summary(lmyear)
 
 predict(lmyear,
@@ -51,7 +51,7 @@ eq = paste0("y = ", round(coeff[2],3), "*x + ", round(coeff[1],3))
 tempchange<- plot + geom_abline(intercept = coeff[1],
                    slope = coeff[2],
                    color = "red",
-                   size = 1,
+                   linewidth = 1,
                    alpha = 0.5) +
   labs(title = "Change in Temperature predicted for 1950-2100")
 ```
