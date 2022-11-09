@@ -1,5 +1,5 @@
 ---
-title: "ACF graph"
+title: "Linear Model"
 author: "Shivangi Nadkar"
 date: "2022-11-07"
 output: html_document
