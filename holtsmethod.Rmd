@@ -9,28 +9,15 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(readr)
-library(lessR)
-library(fable)
-library(ggpubr)
+library(aTSA)
 ```
 
 ```{r}
-tempgraph<- data|>
-    ggplot(aes(x = Year, y = Degrees.C)) +
-  geom_line()
-```
-
-```{r}
-tempgraph |>
-  model(
-    `Holt's method` = ETS(Degrees.C ~ error("A") +
-                       trend("A") + season("N")),
-    `Damped Holt's method` = ETS(Degrees.C ~ error("A") +
-                       trend("Ad", phi = 0.9) + season("N"))
-  ) |>
-  forecast(h = 15) |>
-  autoplot(aus_economy, level = NULL) +
-  labs(title = "Australian population",
-       y = "Millions") +
-  guides(colour = guide_legend(title = "Forecast"))
+temp2 <- Holt(x = c(), type = c("additive",
+                       "multiplicative"),
+        alpha = 0.2, beta = 0.1057,
+        lead = 0,
+        damped = TRUE,
+        phi = 0.98,
+        plot = TRUE)
 ```
