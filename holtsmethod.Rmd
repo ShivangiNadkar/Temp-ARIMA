@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 #created in sesforecasting.Rmd
 fc
-fc2<- holt(a, damped=TRUE, phi = 0.9, h=15)
+fc2<- holt(a, damped=TRUE, phi = 0.9, h=50)
 
 autoplot(tsa) +
   autolayer(fc, series="Holt's method", PI=FALSE) +
