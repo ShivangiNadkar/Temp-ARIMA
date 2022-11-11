@@ -15,6 +15,7 @@ fc
 fc2<- holt(a, damped=TRUE, phi = 0.9, h=50)
 
 autoplot(tsa) +
+  ylim(-0.75, 2)+
   autolayer(fc, series="Holt's method", PI=FALSE) +
   autolayer(fc2, series="Damped Holt's method", PI=FALSE) +
   ggtitle("Forecasts from Holt's method") + xlab("Years after 1958") +
