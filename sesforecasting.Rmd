@@ -95,6 +95,6 @@ round(accuracy(fc), 2)
 
 autoplot(fc) +
   autolayer(fitted(fc), series="Fitted") +
-  ylab("Change in temperature(°C)") + xlab("Years after 1950")
+  ylab("Change in temperature(°C)") + xlab("Years after 1958")
   
 ```
