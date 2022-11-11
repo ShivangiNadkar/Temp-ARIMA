@@ -1,0 +1,23 @@
+---
+title: "Holt's Method"
+author: "Shivangi Nadkar"
+date: "2022-11-11"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#created in sesforecasting.Rmd
+fc
+fc2<- holt(a, damped=TRUE, phi = 0.9, h=15)
+
+autoplot(tsa) +
+  autolayer(fc, series="Holt's method", PI=FALSE) +
+  autolayer(fc2, series="Damped Holt's method", PI=FALSE) +
+  ggtitle("Forecasts from Holt's method") + xlab("Years after 1958") +
+  ylab("Change in temperature(°C)") +
+  guides(colour=guide_legend(title="Forecast"))
+```
