@@ -85,7 +85,7 @@ tsa<- as.ts(a)
 
 tsaplot<- autoplot(tsa)
 
-fc<- ses(a, h = 50)
+fc<- ses(a, h = 100)
 
 round(accuracy(fc), 2)
 #alpha = 0.355
@@ -94,6 +94,7 @@ round(accuracy(fc), 2)
     #l = 0.0246
 
 autoplot(fc) +
+  ylim(-1, 3) +
   autolayer(fitted(fc), series="Fitted") +
   ylab("Change in temperature(°C)") + xlab("Years after 1958")
   

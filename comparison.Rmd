@@ -1,0 +1,31 @@
+---
+title: "Co2 & Temp comparison"
+author: "Shivangi Nadkar"
+date: "2022-11-11"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(readr)
+library(readxl)
+library(tidyverse)
+```
+
+```{r}
+Co2data<- read_xlsx(path = "2022_HiMCM_Data.xlsx", sheet = 1)
+Tempdata<- read_xlsx(path = "2022_HiMCM_Data.xlsx", sheet = 2)
+```
+
+```{r}
+
+tempplot<- Tempdata|>
+  ggplot(mapping = aes(x = Year, y = `Degrees C`)) +
+  geom_line()
+
+
+Co2data|>
+  ggplot(aes(x = Year, y = PPM)) +
+  geom_line() +autolayer(tempplot)
+
+```
